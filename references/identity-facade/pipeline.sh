@@ -45,36 +45,47 @@ set_idp_env_var() {
 
     TEST_IDP_APIGEE_REDIRECT_URI="$2"
     export TEST_IDP_APIGEE_REDIRECT_URI
+    printf '\nTEST_IDP_APIGEE_REDIRECT_URI = %s' "$TEST_IDP_APIGEE_REDIRECT_URI"
 
     TEST_IDP_AZ_HOSTNAME=$(printf '%s' "$authorization_endpoint" | awk -F\"https:// '{print $2}' | awk -F\" '{print $1}' | awk -F/ '{print $1}')
     export TEST_IDP_AZ_HOSTNAME
+    printf '\nTEST_IDP_AZ_HOSTNAME = %s' "$TEST_IDP_AZ_HOSTNAME"
 
     TEST_IDP_TOKEN_HOSTNAME=$(printf '%s' "$token_endpoint" | awk -F\"https:// '{print $2}' | awk -F\" '{print $1}' | awk -F/ '{print $1}')
     export TEST_IDP_TOKEN_HOSTNAME
+    printf '\nTEST_IDP_TOKEN_HOSTNAME = %s' "$TEST_IDP_TOKEN_HOSTNAME"
 
     TEST_IDP_JWKS_HOSTNAME=$(printf '%s' "$jwks_uri" | awk -F\"https:// '{print $2}' | awk -F\" '{print $1}' | awk -F/ '{print $1}')
     export TEST_IDP_JWKS_HOSTNAME
+    printf '\nTEST_IDP_JWKS_HOSTNAME = %s' "$TEST_IDP_JWKS_HOSTNAME"
 
     TEST_IDP_USERINFO_HOSTNAME=$(printf '%s' "$userinfo_endpoint" | awk -F\"https://  '{print $2}' | awk -F\" '{print $1}' | awk -F/ '{print $1}')
     export TEST_IDP_USERINFO_HOSTNAME
+    printf '\nTEST_IDP_USERINFO_HOSTNAME = %s' "$TEST_IDP_USERINFO_HOSTNAME"
 
     TEST_IDP_TOKEN_URI=$(printf '%s' "$token_endpoint" | awk -F "$TEST_IDP_TOKEN_HOSTNAME"'/' '{print $2}' | awk -F\" '{print $1}')
     export TEST_IDP_TOKEN_URI
+    printf '\nTEST_IDP_TOKEN_URI = %s' "$TEST_IDP_TOKEN_URI"
 
     TEST_IDP_AZ_URI=$(printf '%s' "$authorization_endpoint" | awk -F "$TEST_IDP_AZ_HOSTNAME"'/' '{print $2}' | awk -F\" '{print $1}')
     export TEST_IDP_AZ_URI
+    printf '\nTEST_IDP_AZ_URI = %s' "$TEST_IDP_AZ_URI"
 
     TEST_IDP_JWKS_URI=$(printf '%s' "$jwks_uri" | awk -F "$TEST_IDP_JWKS_HOSTNAME"'/' '{print $2}' | awk -F\" '{print $1}')
     export TEST_IDP_JWKS_URI
+    printf '\nTEST_IDP_JWKS_URI = %s' "$TEST_IDP_JWKS_URI"
 
     TEST_IDP_USERINFO_URI=$(printf '%s' "$userinfo_endpoint" | awk -F "$TEST_IDP_USERINFO_HOSTNAME"'/' '{print $2}' | awk -F\" '{print $1}')
     export TEST_IDP_USERINFO_URI
+    printf '\nTEST_IDP_USERINFO_URI = %s' "$TEST_IDP_USERINFO_URI"
 
     TEST_IDP_APIGEE_CLIENT_ID="${TEST_IDP_APIGEE_CLIENT_ID:=dummy-client_id-apigee123}"
     export TEST_IDP_APIGEE_CLIENT_ID
+    printf '\nTEST_IDP_APIGEE_CLIENT_ID = %s' "$TEST_IDP_APIGEE_CLIENT_ID"
 
     TEST_IDP_APIGEE_CLIENT_SECRET="${TEST_IDP_APIGEE_CLIENT_SECRET:=dummy-client_secret_apigee456}"
     export TEST_IDP_APIGEE_CLIENT_SECRET
+    printf '\nTEST_IDP_APIGEE_CLIENT_SECRET = %s\n' "$TEST_IDP_APIGEE_CLIENT_SECRET"
 }
 
 ####################################
@@ -180,21 +191,22 @@ generate_edge_json() {
                     "$ENV_NAME"
                 ],
                 "proxies": [
-                    "identity-facade-v1"
+                    "identity-facade-v1",
+                    "api"
                 ]
             }
         ],
         "developers": [
             {
-                "email": "janedoe@example.com",
-                "firstName": "Jane",
-                "lastName": "Doe",
-                "userName": "janedoe",
+                "email": "apigee.dev@harmoney.co.nz",
+                "firstName": "Apigee",
+                "lastName": "Developer",
+                "userName": "adeveloper",
                 "attributes": []
             }
         ],
         "developerApps": {
-            "janedoe@example.com": [
+            "apigee.dev@harmoney.co.nz": [
                 {
                     "name": "identityApp",
                     "attributes": [

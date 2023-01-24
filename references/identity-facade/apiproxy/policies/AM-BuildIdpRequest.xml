@@ -24,6 +24,7 @@
             <FormParam name="redirect_uri">{private.flow.idp.apigee.redirect_uri}</FormParam>
             <FormParam name="scope">{oauthv2authcode.OA2-GetOriginalStateAttributes.scope}</FormParam>
             <FormParam name="grant_type">authorization_code</FormParam>
+            <FormParam name="code_verifier">{request.formparam.code_verifier}</FormParam>
         </FormParams>
         <Verb>POST</Verb>
     </Set>
